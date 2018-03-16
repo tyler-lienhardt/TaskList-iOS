@@ -16,12 +16,11 @@ class TaskViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var descTextField: UITextField!
-    @IBOutlet weak var datePicker: UIDatePicker!
-    
+    @IBOutlet weak var compSwitch: UISwitch!
     
     /*
         This value is either passed by 'TaskTableViewController' in 'prepare(for:sender)' or
-        or constructed as part of adding a new meal
+        or constructed as part of adding a new task
     */
     
     var task: Task?
@@ -38,12 +37,17 @@ class TaskViewController: UIViewController, UITextFieldDelegate {
             navigationItem.title = task.name
             nameTextField.text = task.name
             descTextField.text = task.desc
+            compSwitch.isOn = task.isCompleted
         }
+        else {
+            compSwitch.isOn = false
+        }
+        
         
         //Enable the Save button only if the text field has a valid Task name
         updateSaveButtonState()
     }
-
+    
     // MARK: UITextFieldDelegate
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -80,6 +84,7 @@ class TaskViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    //preparing to save the new task
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
@@ -93,9 +98,17 @@ class TaskViewController: UIViewController, UITextFieldDelegate {
         
         let nameString = nameTextField.text ?? ""
         let descString = descTextField.text ?? ""
-        let date = datePicker.date
         
-        task = Task(name: nameString, desc: descString, date: date)
+        let isCompleted = compSwitch.isOn
+        
+        //if editing an exisiting task, do not update the date
+        if task != nil {
+            let date = task!.date
+            task = Task(name: nameString, desc: descString, date: date, isCompleted: isCompleted)
+        }
+        else {
+            task = Task(name: nameString, desc: descString, date: Date(), isCompleted: isCompleted)
+        }
     }
     
     // MARK: Private methods

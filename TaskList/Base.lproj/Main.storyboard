@@ -71,7 +71,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="jEM-Y6-TGD">
-                                <rect key="frame" x="16" y="84" width="343" height="423"/>
+                                <rect key="frame" x="16" y="84" width="343" height="192"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mRQ-M0-itd">
                                         <rect key="frame" x="0.0" y="0.0" width="84.5" height="20.5"/>
@@ -97,14 +97,8 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
-                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="f7W-2Y-6J3">
-                                        <rect key="frame" x="0.0" y="161" width="320" height="216"/>
-                                        <date key="date" timeIntervalSinceReferenceDate="542414701.26712501">
-                                            <!--2018-03-10 22:45:01 +0000-->
-                                        </date>
-                                    </datePicker>
                                     <stackView autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="msu-1g-lmq">
-                                        <rect key="frame" x="0.0" y="392" width="343" height="31"/>
+                                        <rect key="frame" x="0.0" y="161" width="343" height="31"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sya-Wc-BPZ">
                                                 <rect key="frame" x="0.0" y="0.0" width="80" height="31"/>
@@ -161,7 +155,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="datePicker" destination="f7W-2Y-6J3" id="TPh-uO-YGl"/>
+                        <outlet property="compSwitch" destination="0NW-hs-U1a" id="iRk-LZ-l4R"/>
                         <outlet property="descTextField" destination="Qnq-6W-kWx" id="BRg-5c-GHg"/>
                         <outlet property="nameTextField" destination="sKO-rM-VlH" id="qIN-gz-tJP"/>
                         <outlet property="saveButton" destination="YBm-p0-EQT" id="Ejh-fQ-9rd"/>
@@ -210,6 +204,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="z8c-wu-Qud"/>
+        <segue reference="wrJ-TJ-mpK"/>
     </inferredMetricsTieBreakers>
 </document>

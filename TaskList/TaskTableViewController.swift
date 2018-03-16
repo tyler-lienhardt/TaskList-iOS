@@ -18,7 +18,7 @@ class TaskTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         loadSampleTasks()
         
     }
@@ -52,7 +52,37 @@ class TaskTableViewController: UITableViewController {
         
         cell.nameLabel.text = task.name
         
+        //completed tasks have a gray background
+        if task.isCompleted == true {
+            cell.backgroundColor = UIColor.init(white: 0.9, alpha: 1.0)
+        }
+        else {
+            cell.backgroundColor = UIColor.clear
+        }
+        
         return cell
+    }
+    
+    //the swipe action which reveals the complete button
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let task = tasks[indexPath.row]
+        
+        let compAction = UIContextualAction(style: .normal, title: "Complete") { (action, view, handler) in
+            
+            if task.isCompleted == false {
+                task.isCompleted = true
+            }
+            else {
+                task.isCompleted = false
+            }
+            
+            tableView.reloadData()
+        }
+        
+        compAction.backgroundColor = .green
+        let configuration = UISwipeActionsConfiguration(actions: [compAction])
+        configuration.performsFirstActionWithFullSwipe = false
+        return configuration
     }
     
 
@@ -132,7 +162,10 @@ class TaskTableViewController: UITableViewController {
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 //Update an existing task
                 tasks[selectedIndexPath.row] = task
+                
                 tableView.reloadRows(at: [selectedIndexPath], with: .none)
+                tasks.sort()
+                tableView.reloadData()
             }
             else {
             
@@ -141,7 +174,8 @@ class TaskTableViewController: UITableViewController {
                 
                 tasks.append(task)
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
-            
+                tasks.sort()
+                tableView.reloadData()
             }
         }
     }
@@ -149,19 +183,20 @@ class TaskTableViewController: UITableViewController {
     //MARK: Private methods
     
     private func loadSampleTasks() {
-        guard let task1 = Task(name: "Get bread", desc: "Delicious bread", date: Date()) else {
+        guard let task1 = Task(name: "Get bread", desc: "Delicious bread", date: Date(), isCompleted: false) else {
             fatalError("Unable to instantiate task1")
         }
         
-        guard let task2 = Task(name: "Get peanut butter", desc: "extra chunky", date: Date()) else {
+        guard let task2 = Task(name: "Get peanut butter", desc: "extra chunky", date: Date(), isCompleted: false) else {
             fatalError("Unable to instantiate task2")
         }
         
-        guard let task3 = Task(name: "Get jelly", desc: "raspberry", date: Date()) else {
+        guard let task3 = Task(name: "Get jelly", desc: "raspberry", date: Date(), isCompleted: false) else {
             fatalError("Unable to instantiate task3")
         }
         
         tasks += [task1, task2, task3]
+        tasks.sort()
         
     }
 

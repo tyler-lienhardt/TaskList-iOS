@@ -83,13 +83,13 @@
 		64F6A72220450E22004B5401 /* TaskList */ = {
 			isa = PBXGroup;
 			children = (
-				64F6A7492056F44D004B5401 /* TaskTableViewController.swift */,
 				64F6A72320450E22004B5401 /* AppDelegate.swift */,
 				64F6A72720450E22004B5401 /* Main.storyboard */,
 				64F6A72A20450E22004B5401 /* Assets.xcassets */,
 				64F6A72C20450E22004B5401 /* LaunchScreen.storyboard */,
 				64F6A72F20450E22004B5401 /* Info.plist */,
 				64F6A74520548C31004B5401 /* Task.swift */,
+				64F6A7492056F44D004B5401 /* TaskTableViewController.swift */,
 				64F6A7472056F0C8004B5401 /* TaskTableViewCell.swift */,
 				64F6A74D20582CA0004B5401 /* TaskViewController.swift */,
 			);
