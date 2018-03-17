@@ -34,7 +34,18 @@ class Task {
 extension Task : Comparable {
     static func < (lhs: Task, rhs: Task) -> Bool {
         //to sort dates by newest first
-        return lhs.date > rhs.date
+        if (lhs.isCompleted == false && rhs.isCompleted == false) {
+            return !(lhs.date < rhs.date)
+        }
+        else if (lhs.isCompleted == true && rhs.isCompleted == false){
+            return false
+        }
+        else if (lhs.isCompleted == false && rhs.isCompleted == true) {
+            return true
+        }
+        else {
+            return !(lhs.date < rhs.date)
+        }
     }
 
     static func == (lhs: Task, rhs: Task) -> Bool {

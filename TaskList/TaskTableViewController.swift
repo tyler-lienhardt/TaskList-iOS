@@ -76,6 +76,7 @@ class TaskTableViewController: UITableViewController {
                 task.isCompleted = false
             }
             
+            self.tasks.sort()
             tableView.reloadData()
         }
         
@@ -183,19 +184,26 @@ class TaskTableViewController: UITableViewController {
     //MARK: Private methods
     
     private func loadSampleTasks() {
-        guard let task1 = Task(name: "Get bread", desc: "Delicious bread", date: Date(), isCompleted: false) else {
-            fatalError("Unable to instantiate task1")
-        }
         
-        guard let task2 = Task(name: "Get peanut butter", desc: "extra chunky", date: Date(), isCompleted: false) else {
-            fatalError("Unable to instantiate task2")
-        }
-        
-        guard let task3 = Task(name: "Get jelly", desc: "raspberry", date: Date(), isCompleted: false) else {
+        guard let task1 = Task(name: "Make sandwich", desc: "pbj everyday", date: Date(), isCompleted: false) else {
             fatalError("Unable to instantiate task3")
         }
         
-        tasks += [task1, task2, task3]
+        guard let task2 = Task(name: "Get bread", desc: "Delicious bread", date: Date(), isCompleted: false) else {
+            fatalError("Unable to instantiate task1")
+        }
+        
+        guard let task3 = Task(name: "Get peanut butter", desc: "extra chunky", date: Date(), isCompleted: false) else {
+            fatalError("Unable to instantiate task2")
+        }
+        
+        guard let task4 = Task(name: "Get jelly", desc: "raspberry", date: Date(), isCompleted: false) else {
+            fatalError("Unable to instantiate task3")
+        }
+        
+
+        
+        tasks += [task1, task2, task3, task4]
         tasks.sort()
         
     }

@@ -17,6 +17,7 @@ class TaskViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var descTextField: UITextField!
     @IBOutlet weak var compSwitch: UISwitch!
+    @IBOutlet weak var datePicker: UIDatePicker!
     
     /*
         This value is either passed by 'TaskTableViewController' in 'prepare(for:sender)' or
@@ -37,6 +38,7 @@ class TaskViewController: UIViewController, UITextFieldDelegate {
             navigationItem.title = task.name
             nameTextField.text = task.name
             descTextField.text = task.desc
+            datePicker.date = task.date
             compSwitch.isOn = task.isCompleted
         }
         else {
@@ -98,16 +100,16 @@ class TaskViewController: UIViewController, UITextFieldDelegate {
         
         let nameString = nameTextField.text ?? ""
         let descString = descTextField.text ?? ""
+        let date = datePicker.date
         
         let isCompleted = compSwitch.isOn
         
         //if editing an exisiting task, do not update the date
         if task != nil {
-            let date = task!.date
             task = Task(name: nameString, desc: descString, date: date, isCompleted: isCompleted)
         }
         else {
-            task = Task(name: nameString, desc: descString, date: Date(), isCompleted: isCompleted)
+            task = Task(name: nameString, desc: descString, date: date, isCompleted: isCompleted)
         }
     }
     
