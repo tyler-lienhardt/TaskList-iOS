@@ -31,9 +31,10 @@ class Task {
     }
 }
 
+//Sorts by most-recent-date first, and by isCompleted boolean. Completed tasks are sent to the bottom of the list, but are still sorted by date.
 extension Task : Comparable {
     static func < (lhs: Task, rhs: Task) -> Bool {
-        //to sort dates by newest first
+
         if (lhs.isCompleted == false && rhs.isCompleted == false) {
             return !(lhs.date < rhs.date)
         }
@@ -44,6 +45,7 @@ extension Task : Comparable {
             return true
         }
         else {
+            //if both tasks are completed, sort by most-recent-date
             return !(lhs.date < rhs.date)
         }
     }
