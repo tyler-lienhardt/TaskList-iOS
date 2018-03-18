@@ -164,19 +164,19 @@ class TaskTableViewController: UITableViewController {
     
     private func loadSampleTasks() {
         
-        guard let task1 = Task(name: "Make sandwich", desc: "pbj everyday", date: Date(), isCompleted: false) else {
+        guard let task1 = Task(name: "Tap a task to edit details.", desc: "Now you're ready to go!", date: Date(), isCompleted: false) else {
             fatalError("Unable to instantiate task3")
         }
         
-        guard let task2 = Task(name: "Get bread", desc: "Delicious bread", date: Date(), isCompleted: false) else {
+        guard let task2 = Task(name: "Tap + to add a new task.", desc: "Tasks with more recent dates will be listed first.", date: Date(), isCompleted: false) else {
             fatalError("Unable to instantiate task1")
         }
         
-        guard let task3 = Task(name: "Get peanut butter", desc: "extra chunky", date: Date(), isCompleted: false) else {
+        guard let task3 = Task(name: "Swipe right to reveal 'Delete' button", desc: "Show that task who's boss.", date: Date(), isCompleted: false) else {
             fatalError("Unable to instantiate task2")
         }
         
-        guard let task4 = Task(name: "Get jelly", desc: "raspberry", date: Date(), isCompleted: false) else {
+        guard let task4 = Task(name: "Swipe left to reveal 'Completed' button.", desc: "Completed tasks are shown in gray.", date: Date(), isCompleted: false) else {
             fatalError("Unable to instantiate task3")
         }
         
