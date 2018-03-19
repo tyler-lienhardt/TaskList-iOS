@@ -42,6 +42,7 @@
 		64F6A7472056F0C8004B5401 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		64F6A7492056F44D004B5401 /* TaskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewController.swift; sourceTree = "<group>"; };
 		64F6A74D20582CA0004B5401 /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
+		6800AF34205F2A12009DD22F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +66,7 @@
 		64F6A71720450E22004B5401 = {
 			isa = PBXGroup;
 			children = (
+				6800AF34205F2A12009DD22F /* README.md */,
 				64F6A72220450E22004B5401 /* TaskList */,
 				64F6A73720450E22004B5401 /* TaskListTests */,
 				64F6A72120450E22004B5401 /* Products */,

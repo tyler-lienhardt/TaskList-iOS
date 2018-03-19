@@ -18,7 +18,7 @@ class TaskViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var descTextField: UITextField!
     @IBOutlet weak var compSwitch: UISwitch!
     @IBOutlet weak var datePicker: UIDatePicker!
-
+    @IBOutlet weak var dateLabel: UILabel!
     
     /*
         This value is either passed by 'TaskTableViewController' in 'prepare(for:sender)' or
@@ -34,6 +34,9 @@ class TaskViewController: UIViewController, UITextFieldDelegate {
         nameTextField.delegate = self
         descTextField.delegate = self
         
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM dd yyyy"
+        
         //set up views for an existing task
         if let task = task {
             navigationItem.title = task.name
@@ -41,6 +44,7 @@ class TaskViewController: UIViewController, UITextFieldDelegate {
             descTextField.text = task.desc
             datePicker.date = task.date
             compSwitch.isOn = task.isCompleted
+            dateLabel.text = dateFormatter.string(from: task.date)
         }
         else {
             compSwitch.isOn = false

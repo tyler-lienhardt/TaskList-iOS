@@ -49,7 +49,12 @@ class TaskTableViewController: UITableViewController {
         
         let task = tasks[indexPath.row]
         
+        //setting table cell name and date label text
         cell.nameLabel.text = task.name
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yy"
+        cell.dateLabel.text = dateFormatter.string(from: task.date)
         
         //completed tasks have a gray background
         if task.isCompleted == true {
@@ -62,11 +67,11 @@ class TaskTableViewController: UITableViewController {
         return cell
     }
     
-    //swipe left reveals the complete button
+    //swipe left reveals the Done button
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let task = tasks[indexPath.row]
         
-        let compAction = UIContextualAction(style: .normal, title: "Complete") { (action, view, handler) in
+        let compAction = UIContextualAction(style: .normal, title: "Done") { (action, view, handler) in
             
             if task.isCompleted == false {
                 task.isCompleted = true
@@ -172,11 +177,11 @@ class TaskTableViewController: UITableViewController {
             fatalError("Unable to instantiate task1")
         }
         
-        guard let task3 = Task(name: "Swipe right to reveal 'Delete' button", desc: "Show that task who's boss.", date: Date(), isCompleted: false) else {
+        guard let task3 = Task(name: "Swipe right to delete tasks", desc: "Show that task who's boss.", date: Date(), isCompleted: false) else {
             fatalError("Unable to instantiate task2")
         }
         
-        guard let task4 = Task(name: "Swipe left to reveal 'Completed' button.", desc: "Completed tasks are shown in gray.", date: Date(), isCompleted: false) else {
+        guard let task4 = Task(name: "Swipe left to complete tasks.", desc: "Completed tasks are shown in gray.", date: Date(), isCompleted: false) else {
             fatalError("Unable to instantiate task3")
         }
         
