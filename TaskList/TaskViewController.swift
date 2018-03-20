@@ -16,15 +16,15 @@ class TaskViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var descTextField: UITextField!
-    @IBOutlet weak var compSwitch: UISwitch!
+    @IBOutlet weak var completedSwitch: UISwitch!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     /*
         This value is either passed by 'TaskTableViewController' in 'prepare(for:sender)' or
-        or constructed as part of adding a new task
+        constructed as part of adding a new task
     */
-    
     var task: Task?
     
     override func viewDidLoad() {
@@ -34,6 +34,7 @@ class TaskViewController: UIViewController, UITextFieldDelegate {
         nameTextField.delegate = self
         descTextField.delegate = self
         
+        //preparing the date to display
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM dd yyyy"
         
@@ -43,16 +44,49 @@ class TaskViewController: UIViewController, UITextFieldDelegate {
             nameTextField.text = task.name
             descTextField.text = task.desc
             datePicker.date = task.date
-            compSwitch.isOn = task.isCompleted
+            completedSwitch.isOn = task.isCompleted
             dateLabel.text = dateFormatter.string(from: task.date)
         }
         else {
-            compSwitch.isOn = false
+            completedSwitch.isOn = false
         }
-        
         
         //Enable the Save button only if the text field has a valid Task name
         updateSaveButtonState()
+        
+        //Notification observers to keep text views visible when keyboard appears
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(TaskViewController.keyboardWillShow(_:)),
+            name: Notification.Name.UIKeyboardWillShow,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(TaskViewController.keyboardWillHide(_:)),
+            name: Notification.Name.UIKeyboardWillHide,
+            object: nil
+        )
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    func adjustInsetForKeyboardShow(_ show: Bool, notification: Notification) {
+        let userInfo = notification.userInfo ?? [:]
+        let keyboardFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let adjustmentHeight = (keyboardFrame.height + 20) * (show ? 1: -1)
+        scrollView.contentInset.bottom += adjustmentHeight
+        scrollView.scrollIndicatorInsets.bottom += adjustmentHeight
+    }
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        adjustInsetForKeyboardShow(true, notification: notification)
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        adjustInsetForKeyboardShow(false, notification: notification)
     }
     
     // MARK: UITextFieldDelegate
@@ -107,7 +141,7 @@ class TaskViewController: UIViewController, UITextFieldDelegate {
         let descString = descTextField.text ?? ""
         let date = datePicker.date
         
-        let isCompleted = compSwitch.isOn
+        let isCompleted = completedSwitch.isOn
         
         //if editing an exisiting task, do not update the date
         if task != nil {
